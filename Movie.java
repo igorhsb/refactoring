@@ -1,59 +1,42 @@
 public class Movie {
 
-  public static final int  CHILDRENS = 2;
-  public static final int  REGULAR = 0;
-  public static final int  NEW_RELEASE = 1;
+    public static final int  CHILDRENS = 2;
+    public static final int  REGULAR = 0;
+    public static final int  NEW_RELEASE = 1;
 
-  private String _title;
-  private Price _price;
+    private String _title;
+    private Price _price;
 
-  public Movie(String title, int priceCode) {
-      _title = title;
-      setPriceCode(priceCode);
-  }
-
-  public int getPriceCode() {
-    return _price.getPriceCode();
- }
- 
- public void setPriceCode(int arg) {
-    switch (arg) {
-       case REGULAR:
-          _price = new RegularPrice();
-          break;
-       case CHILDRENS:
-          _price = new ChildrensPrice();
-          break;
-       case NEW_RELEASE:
-          _price = new NewReleasePrice();
-          break;
-       default:
-          throw new IllegalArgumentException("Incorrect Price Code");
+    public Movie(String title, int priceCode) {
+        _title = title;
+        setPriceCode(priceCode);
     }
- }
 
-  public String getTitle (){
-      return _title;
-  }
-
-  public double getCharge(int daysRented){
-        double amount = 0;
-        switch (this.getPriceCode()) {
-            case Movie.REGULAR:
-            amount += 2;
-            if (daysRented > 2)
-                amount += (daysRented - 2) * 1.5;
+    public int getPriceCode() {
+        return _price.getPriceCode();
+    }
+    
+    public void setPriceCode(int arg) {
+        switch (arg) {
+        case REGULAR:
+            _price = new RegularPrice();
             break;
-            case Movie.NEW_RELEASE:
-            amount += daysRented * 3;
+        case CHILDRENS:
+            _price = new ChildrensPrice();
             break;
-            case Movie.CHILDRENS:
-            amount += 1.5;
-            if (daysRented > 3)
-                amount += (daysRented - 3) * 1.5;
-                break;
+        case NEW_RELEASE:
+            _price = new NewReleasePrice();
+            break;
+        default:
+            throw new IllegalArgumentException("Incorrect Price Code");
         }
-     return amount;
+    }
+
+    public String getTitle (){
+        return _title;
+    }
+    public double getCharge(int daysRented){
+        return _price.getCharge(daysRented);    
     }
     
     public int getFrequentRenterPoints(int daysRented){
