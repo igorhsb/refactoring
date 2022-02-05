@@ -2,6 +2,10 @@ import java.util.Enumeration;
 
 public class TextStatement extends Statement {
     public String value(Customer aCustomer) {
+        return getText(aCustomer);
+    }
+    
+    private String getText(Customer aCustomer) {
         Enumeration rentals = aCustomer.getRentals();
         String result = "Rental Record for " + aCustomer.getName() +
         "\n";
@@ -18,5 +22,9 @@ public class TextStatement extends Statement {
         String.valueOf(aCustomer.getTotalFrequentRenterPoints()) +
         " frequent renter points";
         return result;
-     }
+    }
+
+    private String getText(int p) {
+        return "text";
+    }
 }
